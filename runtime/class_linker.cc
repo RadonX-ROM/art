@@ -2210,9 +2210,7 @@ mirror::Class* ClassLinker::FindClass(Thread* self, const char* descriptor,
       return soa.Decode<mirror::Class*>(result.get());
     }
   }
-
-  ThrowNoClassDefFoundError("Class %s not found", PrintableString(descriptor).c_str());
-  return nullptr;
+  UNREACHABLE();
 }
 
 mirror::Class* ClassLinker::DefineClass(Thread* self, const char* descriptor, size_t hash,
@@ -4316,7 +4314,7 @@ bool ClassLinker::WaitForInitializeClass(Handle<mirror::Class> klass, Thread* se
     LOG(FATAL) << "Unexpected class status. " << PrettyClass(klass.Get()) << " is "
         << klass->GetStatus();
   }
-  LOG(FATAL) << "Not Reached" << PrettyClass(klass.Get());
+  UNREACHABLE();
 }
 
 bool ClassLinker::ValidateSuperClassDescriptors(Handle<mirror::Class> klass) {
